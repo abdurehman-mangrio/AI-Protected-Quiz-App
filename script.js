@@ -1,0 +1,3 @@
+// solve all with in 10 minutes
+
+// Write your code here...

@@ -1,0 +1,20 @@
+<svg width="174" height="26" viewBox="0 0 174 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#615DFF"/>
+      <stop offset="100%" stop-color="#3DD9EB"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Shape -->
+  <path d="M20.137 26C22.898 26 25.184 23.743 24.673 21.029C24.353 19.327 23.868 17.659 23.224 16.05C21.96 12.896 20.109 10.03 17.775 7.615C15.44 5.201 12.669 3.286 9.619 1.979C8.114 1.334 6.555 0.844 4.965 0.512C2.262 -0.051 0 2.239 0 5V21C0 23.761 2.239 26 5 26H20.137Z" fill="#615DFF"/>
+  
+  <g style="mix-blend-mode:multiply">
+    <path d="M13.701 26C10.94 26 8.654 23.743 9.165 21.029C9.485 19.327 9.97 17.659 10.615 16.05C11.878 12.896 13.73 10.03 16.064 7.615C18.398 5.201 21.169 3.286 24.219 1.979C25.724 1.334 27.283 0.844 28.873 0.512C31.577 -0.051 33.838 2.239 33.838 5V21C33.838 23.761 31.6 26 28.838 26H13.701Z" fill="#3DD9EB"/>
+  </g>
+
+  <!-- Logo Text -->
+  <text x="45" y="17" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="url(#logoGradient)">
+    CYBERARENA
+  </text>
+</svg>
