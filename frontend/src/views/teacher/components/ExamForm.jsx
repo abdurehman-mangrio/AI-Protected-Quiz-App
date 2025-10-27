@@ -3,18 +3,13 @@ import {
   Box,
   Typography,
   Button,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Stack,
 } from '@mui/material';
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import CodingQuestionForm from './CodingQuestionForm';
 
 const CreateExam = ({ formik, title, subtitle, subtext }) => {
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
+  const { values, errors, touched, handleChange, handleSubmit } = formik; // Removed handleBlur
 
   return (
     <>

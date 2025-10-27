@@ -38,8 +38,7 @@ const DescriptionAndInstructions = () => {
   const navigate = useNavigate();
 
   const { examId } = useParams();
-  const { data: questions, isLoading } = useGetQuestionsQuery(examId); // Fetch questions using examId
-  // const { data: questions, isLoading } = useGetQuestionsQuery({ examId });
+  const { data: questions } = useGetQuestionsQuery(examId); // Removed unused isLoading
 
   // fech exam data from backend
   // pass testUnique id on start button
