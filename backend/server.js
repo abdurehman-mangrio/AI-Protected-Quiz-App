@@ -14,8 +14,34 @@ import path from "path";
 import cors from "cors";
 import smsRoutes from './routes/smsRoutes.js';
 
+// Load environment variables FIRST
 dotenv.config();
+
+// DEBUG: Check environment variables before connecting to DB
+console.log('🔍 === ENVIRONMENT VARIABLES DEBUG ===');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('MONGODB_URI present:', !!process.env.MONGODB_URI);
+console.log('MONGODB_URI value (first 50 chars):', process.env.MONGODB_URI ? process.env.MONGODB_URI.substring(0, 50) + '...' : 'MISSING');
+console.log('JWT_SECRET present:', !!process.env.JWT_SECRET);
+console.log('CLIENT_URL:', process.env.CLIENT_URL);
+console.log('PORT:', process.env.PORT);
+console.log('All environment variables:', Object.keys(process.env));
+console.log('=====================================');
+
+// Check if MongoDB URI is available before connecting
+if (!process.env.MONGODB_URI) {
+  console.error('❌ CRITICAL ERROR: MONGODB_URI is missing!');
+  console.error('Please check Railway environment variables:');
+  console.error('1. Go to Railway dashboard → Your project → Variables');
+  console.error('2. Add MONGODB_URI with your MongoDB connection string');
+  console.error('3. Format: mongodb+srv://username:password@cluster.mongodb.net/database-name');
+  process.exit(1);
+}
+
+// Now connect to database
+console.log('🔄 Attempting to connect to MongoDB...');
 connectDB();
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -115,7 +141,8 @@ app.get("/api/health", (req, res) => {
   res.json({ 
     message: 'AI Proctored Backend is running!',
     environment: process.env.NODE_ENV,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    database: process.env.MONGODB_URI ? 'Connected' : 'Missing'
   });
 });
 
