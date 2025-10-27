@@ -95,7 +95,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/users', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -465,7 +465,7 @@ _Keep your credentials secure and don't share them with anyone._`;
 
     try {
       setLoading(true);
-      const response = await fetch('/api/users', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
