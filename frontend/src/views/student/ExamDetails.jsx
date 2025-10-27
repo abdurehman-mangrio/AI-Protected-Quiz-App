@@ -7,7 +7,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Radio,
   Stack,
   Typography,
 } from '@mui/material';

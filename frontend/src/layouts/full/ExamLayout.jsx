@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import { styled, Container, Box } from '@mui/material';
+import { styled, Box } from '@mui/material'; // Removed unused Container
 import { Outlet } from 'react-router-dom';
 
 import Header from './header/Header';
-import Sidebar from './sidebar/Sidebar';
-
-const MainWrapper = styled('div')(() => ({
-  // display: 'flex',
-  // minHeight: '100vh',
-  // width: '100%',
-}));
+// Removed unused Sidebar import
 
 const PageWrapper = styled('div')(() => ({
   // display: 'flex',
@@ -22,7 +16,7 @@ const PageWrapper = styled('div')(() => ({
 
 const ExamLayout = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
-  const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false); // eslint-disable-line no-unused-vars
   // const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
   return (
