@@ -57,31 +57,31 @@ const ResultPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('Fetching data for user:', userInfo?.role);
+        // console.log('Fetching data for user:', userInfo?.role);
         
         // Fetch all exams first
         const examsResponse = await axiosInstance.get('/api/users/exam', {
           withCredentials: true,
         });
-        console.log('Exams fetched:', examsResponse.data);
+        // console.log('Exams fetched:', examsResponse.data);
         setExams(examsResponse.data);
 
         // Fetch results based on user role
         if (userInfo?.role === 'teacher') {
           // For teachers, fetch all results
-          console.log('Fetching all results for teacher...');
+          // console.log('Fetching all results for teacher...');
           const resultsResponse = await axiosInstance.get('/api/users/results/all', {
             withCredentials: true,
           });
-          console.log('All results fetched:', resultsResponse.data);
+          // console.log('All results fetched:', resultsResponse.data);
           setResults(resultsResponse.data.data || []);
         } else {
           // For students, fetch only their visible results
-          console.log('Fetching user results for student...');
+          // console.log('Fetching user results for student...');
           const resultsResponse = await axiosInstance.get('/api/users/results/user', {
             withCredentials: true,
           });
-          console.log('User results fetched:', resultsResponse.data);
+          // console.log('User results fetched:', resultsResponse.data);
           setResults(resultsResponse.data.data || []);
         }
       } catch (err) {
@@ -101,7 +101,7 @@ const ResultPage = () => {
 
   const handleToggleVisibility = async (resultId) => {
     try {
-      console.log('Toggling visibility for result:', resultId);
+      // console.log('Toggling visibility for result:', resultId);
       
       const response = await axiosInstance.put(
         `/api/users/results/${resultId}/toggle-visibility`,
@@ -111,7 +111,7 @@ const ResultPage = () => {
         },
       );
       
-      console.log('Toggle response:', response.data);
+      // console.log('Toggle response:', response.data);
       toast.success(response.data.data?.message || 'Visibility updated successfully');
       
       // Refresh results

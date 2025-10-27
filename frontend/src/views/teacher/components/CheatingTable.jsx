@@ -48,20 +48,9 @@ export default function CheatingTable() {
     skip: !selectedExamId,
   });
 
-  // Debug logs
   useEffect(() => {
-    console.log('📊 Exams Data:', examsData);
-    console.log('🎯 Selected Exam ID:', selectedExamId);
-  }, [examsData, selectedExamId]);
-
-  useEffect(() => {
-    console.log('🔍 Cheating Logs Data:', cheatingLogsData);
     if (cheatingLogsData) {
       const logsArray = Array.isArray(cheatingLogsData) ? cheatingLogsData : [];
-      console.log('📈 Processed Logs Count:', logsArray.length);
-      if (logsArray.length > 0) {
-        console.log('📝 First Log Sample:', logsArray[0]);
-      }
       setCheatingLogs(logsArray);
     }
   }, [cheatingLogsData]);
@@ -69,7 +58,6 @@ export default function CheatingTable() {
   useEffect(() => {
     if (examsData && examsData.length > 0 && !selectedExamId) {
       const firstExam = examsData[0];
-      console.log('🎯 Auto-selecting first exam:', firstExam);
       setSelectedExamId(firstExam.examId || firstExam._id);
     }
   }, [examsData, selectedExamId]);
@@ -92,8 +80,6 @@ export default function CheatingTable() {
 
   const getViolationColor = (count) => {
     const numCount = Number(count) || 0;
-    console.log(`🎨 Violation Color - Count: ${numCount}, Type: ${typeof count}`);
-    
     if (numCount > 5) return 'error';
     if (numCount > 2) return 'warning';
     if (numCount > 0) return 'info';
@@ -102,8 +88,6 @@ export default function CheatingTable() {
 
   const getViolationIcon = (count) => {
     const numCount = Number(count) || 0;
-    console.log(`⚠️ Violation Icon - Count: ${numCount}, Type: ${typeof count}`);
-    
     if (numCount > 0) return <WarningIcon />;
     return null;
   };
@@ -114,12 +98,9 @@ export default function CheatingTable() {
       (Number(log.multipleFaceCount) || 0) +
       (Number(log.cellPhoneCount) || 0) +
       (Number(log.prohibitedObjectCount) || 0);
-    
-    console.log(`📊 Total Violations for ${log.username}:`, total);
     return total;
   };
 
-  // Refresh logs
   const handleRefresh = () => {
     if (selectedExamId) {
       refetch();
@@ -157,41 +138,6 @@ export default function CheatingTable() {
 
   return (
     <Box>
-      {/* Debug Information - Remove after fixing */}
-      <Paper sx={{ p: 2, mb: 2, backgroundColor: '#f8f9fa', border: '1px dashed #ccc' }}>
-        <Typography variant="subtitle2" gutterBottom color="primary">
-          🐛 Debug Information
-        </Typography>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="body2" fontFamily="monospace">
-              Selected Exam: {selectedExamId}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="body2" fontFamily="monospace">
-              Total Logs: {cheatingLogs.length}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="body2" fontFamily="monospace">
-              Filtered Users: {filteredUsers.length}
-            </Typography>
-          </Grid>
-          {filteredUsers.length > 0 && (
-            <Grid item xs={12}>
-              <Typography variant="body2" fontFamily="monospace">
-                Sample Counts - {filteredUsers[0].username}: 
-                NoFace={filteredUsers[0].noFaceCount}, 
-                MultiFace={filteredUsers[0].multipleFaceCount}, 
-                CellPhone={filteredUsers[0].cellPhoneCount}, 
-                Prohibited={filteredUsers[0].prohibitedObjectCount}
-              </Typography>
-            </Grid>
-          )}
-        </Grid>
-      </Paper>
-
       {/* Controls */}
       <Paper sx={{ p: 2, mb: 2 }}>
         <Grid container spacing={2} alignItems="center">
@@ -235,19 +181,6 @@ export default function CheatingTable() {
             </Tooltip>
           </Grid>
         </Grid>
-      </Paper>
-
-      {/* Test Violation Display */}
-      <Paper sx={{ p: 2, mb: 2, backgroundColor: '#fff3cd', border: '1px solid #ffeaa7' }}>
-        <Typography variant="subtitle2" gutterBottom color="#856404">
-          🎨 Violation Level Examples:
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-          <Chip icon={<WarningIcon />} label="0 violations" color="default" size="small" />
-          <Chip icon={<WarningIcon />} label="1 violation" color="info" size="small" />
-          <Chip icon={<WarningIcon />} label="3 violations" color="warning" size="small" />
-          <Chip icon={<WarningIcon />} label="6 violations" color="error" size="small" />
-        </Box>
       </Paper>
 
       {/* Loading State */}
